@@ -1,0 +1,442 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* MARK: COLORS
+/* -------- Variables colors --------  */
+:root {  
+  color-scheme:light dark;
+	
+  --color-bg:light-dark(#ebeef1, #1A1B1F);
+  --color-text-bg:light-dark(#ebeef1, #232429);
+  --color-text:light-dark(#707070, #b1b1b1);
+  --color-text-np:light-dark(#b1b1b1, #4f4f4f);
+  --color-text-p:light-dark(#FF69B4, #FFb3de);
+  --color-border:light-dark(#e5e5e5, #17181c);
+  --color-bsdw-one:light-dark(#00000029, #101114);
+  --color-bsdw-two:light-dark(#ffffffb3, #24252a);
+
+  --color-cmd-yellow: #FFF021;
+  --color-cmd-papaya: #FAF0D7;
+  --color-cmd-lavendel: #F0EBF0;
+  --color-cmd-mint: #E0F5DF;
+}
+
+/* VRAAG!!: DEZE TOEVOEGEN AAN :ROOT HIERBOVEN? */
+@media (prefers-color-scheme:light) {
+  :root {
+    --color-one: hsl(
+			calc(360 * var(--hue, .9)) 
+			calc(100% * var(--saturation, 1)) 
+			calc(100% * var(--lightness, .5)) 
+		);
+  
+    --color-two: hsl(
+			calc(360 * var(--hue, .9) + 90) 
+			calc(100% * var(--saturation, 1)) 
+			calc(100% * var(--lightness, .5)) 
+		);
+  }
+}
+
+@media (prefers-color-scheme:dark) {
+  :root {
+    --color-one: hsl(
+			calc(360 * var(--hue, .9)) 
+			calc(100% * var(--saturation, 1)) 
+			calc(100% * var(--lightness, .5)) 
+		);
+  
+    --color-two: hsl(
+			calc(360 * var(--hue, .9) + 80) 
+			calc(100% * var(--saturation, 1)) 
+			calc(100% * var(--lightness, .5)) 
+		);
+  }
+}
+
+
+/* MARK: Fonts
+/* -------- TYPOGRAPHY TITLE --------  */
+@font-face {
+  font-family: 'WHOA Spine';
+  src: url(../fonts/WHOA-Spine-v0.4.1.ttf);
+
+  font-weight: 100 900;
+  letter-spacing: .1em .5em;
+}
+
+@font-face {
+  font-family: 'WHOA Top';
+  src: url(../fonts/WHOA-Top-v0.4.1.ttf);
+
+  font-weight: 100 900;
+}
+
+
+/* MARK: Intro
+/* -------- SECTION: INTRODUCTION --------  */
+main > section:nth-of-type(1) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100dvw;
+  height: 100dvh;
+
+  border-bottom: 2px solid var(--color-border);
+
+  & > p {
+    color: var(--color-text-bg);
+    text-shadow: 3px 3px 3px var(--color-bsdw-one),
+                -2px -2px 2px var(--color-bsdw-two);
+
+    font-size: clamp(3em,15vw,6em);
+  }
+}
+
+h1 {
+  font-family: 'WHOA Spine', sans-serif;
+  font-size: clamp(5em, 25vw, 15em);
+
+  font-weight: 200;
+  letter-spacing: .1em;
+
+  color: var(--color-one);
+
+  animation: title-animation 4s infinite alternate ease-in-out;
+}
+
+@keyframes title-animation {
+  from {
+    font-variation-settings: "hrzn" 0, "vert" -1000, "rota" -45, "zoom" -1000;
+  }
+  to {
+    font-variation-settings: "hrzn" 400, "vert" 1000, "rota" 45, "zoom" 50;
+  }
+}
+
+
+
+/* MARK: General
+/* -------- GENERAL LAY-OUT --------  */
+body {
+  font-family: 'WHOA Top';
+  background-color: var(--color-bg);
+}
+
+h2 {
+  font-size: clamp(2.5em,10vw, 3em);
+
+  color: var(--color-text-bg);
+  text-shadow: 2px 2px 2px var(--color-bsdw-one),
+              -1px -1px 1px var(--color-bsdw-two);
+}
+
+h3 {
+  font-size: clamp(1.5em,7vw,2.5em);
+  color: var(--color-text-np);
+
+  margin-top: .4em;
+}
+
+main > section:nth-of-type(2) {
+  display: grid;
+  grid-template-areas: 
+  "spirograph"
+  "modes"
+  "sliders";
+}
+
+
+
+/* MARK: Animatie divs
+/* -------- SECTION: ANIMATION SPIROGRAPH --------  */
+section:nth-of-type(2) section:nth-of-type(1) {
+  grid-area: spirograph;
+  place-self: center;
+  margin: 10em 0;
+}
+
+/* MARK: MODES
+/* -------- SECTION: MODES --------  */
+section:nth-of-type(2) section:nth-of-type(2) {
+  grid-area: modes;
+  height: 30svh;
+  border-radius: 1.5rem;
+  border: .25px solid var(--color-border);
+
+  box-shadow: 10px 10px 10px 0 var(--color-bsdw-one),
+              -10px -10px 10px 0 var(--color-bsdw-two);
+  
+  margin: 1.5em;
+  padding: 1em;
+
+  & div {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 1em;
+    margin-top: .5em;
+  }
+
+  & div div {
+    box-shadow: 10px 10px 10px 0 var(--color-bsdw-one),
+                -10px -10px 10px 0 var(--color-bsdw-two);
+    border: .25px solid var(--color-border);
+    font-size: 1rem;
+    width: fit-content;
+    height: 1em;
+    border-radius: 5rem;
+    padding: 1.5em;
+    margin-bottom: 1em;
+    
+    color: var(--color-text-np);
+    
+    background: var(--color-bg);
+    
+    transition: all .5s ease;
+
+    &:has(input:checked) {
+      box-shadow: inset 5px 5px 7px 0 var(--color-bsdw-one),
+                  inset -5px -5px 7px 0 var(--color-bsdw-two);
+      color: var(--color-one);
+      border: .25px solid var(--color-border);
+    }
+
+    &:hover,
+    &:focus {
+      box-shadow: 5px 5px 5px 0 var(--color-bsdw-one),
+                  -3px -3px 3px 0 var(--color-bsdw-two);
+    }
+  }
+
+  & input[type="radio"] {
+    display: none;
+  }
+}
+
+html:has([value="solid"]:checked) {
+	--solid:true;
+}
+
+html:has([value="dotted"]:checked) {
+	--dotted:true;
+}
+
+html:has([value="random"]:checked) {
+	--random:true;
+}
+
+html:has([value="cmd"]:checked) {
+	--cmd:true;
+}
+
+
+@container style(--solid:true) {
+  section:nth-of-type(1) div div {
+    border: calc(var(--border-size) * 1px) solid;
+  }
+}
+
+@container style(--dotted:true) {
+  section:nth-of-type(1) div div {
+    border: calc(var(--border-size) * 1px) dotted;
+  }
+}
+
+@container style(--random:true) {
+  section:nth-of-type(2) section:nth-of-type(1) div div {
+    --mix-ratio: calc(var(--sbindex) * 5%);
+    
+    border-color: color-mix(
+      in oklch, 
+      var(--color-one), 
+      var(--color-two) var(--mix-ratio)
+    );
+  }
+}
+
+@container style(--cmd:true) {
+  section:nth-of-type(2) section:nth-of-type(1) div div {
+    --mix-ratio: calc(var(--sbindex) * 5%);
+
+    border-color: color-mix(
+      in oklch, 
+      var(--color-cmd-yellow), 
+      var(--color-cmd-lavendel) var(--mix-ratio)
+    );
+  }
+}
+
+
+
+/* MARK: SLIDERS
+/* -------- SECTION: SLIDERS --------  */
+section:nth-of-type(2) section:nth-of-type(3) {
+  grid-area: sliders;
+
+  height: 65svh;
+  border-radius: 1.5rem;
+
+  box-shadow: 10px 10px 10px 0 var(--color-bsdw-one),
+              -10px -10px 10px 0 var(--color-bsdw-two);
+  
+  margin: 1.5em;
+  padding: 1em;
+
+  & label {
+    display: flex;
+    gap: .5em;
+    line-height: 1;
+    align-items: center;
+    font-size: clamp(1em,5vw,2em);
+
+    color: var(--color-text-np);
+  }
+}
+
+
+
+/* MARK: Animatie divs
+/* -------- SECTION: ANIMATION SPIROGRAPH --------  */
+section:nth-of-type(2) {
+  & section:nth-of-type(1) {
+    display: grid;
+    place-items: center;
+  }
+
+  & section:nth-of-type(1) > div {
+    grid-area: 1/1;
+    width: clamp(20em,50vw,40em);
+    aspect-ratio: 1;
+    
+    --sbindex: sibling-index();
+    
+    transform: 
+      translateZ(calc(var(--sbindex) * .25em))
+      rotate(calc(var(--sbindex) * 10deg * var(--rotate)))
+      scale(calc(1 - var(--sbindex) * 0.025 * var(--scale)));
+    
+  }
+
+  & section:nth-of-type(1) div div {
+    width: 100%;
+    aspect-ratio: var(--ratio);
+
+    /*  https://9elements.github.io/fancy-border-radius/#30.36.30.43--.  */
+    /*  https://codepen.io/shooft/pen/dyOXrpZ  */
+    /*   border-radius: 36% 64% 57% 43% / 30% 30% 70% 70%; */
+    /*  !! GEMINI voor berekening van border-radius. Vraag: hoe ik met behulp van sibling-index() elk kind net een andere vorm kan geven. Toen heb ik zelf de waardes veranderd en ook een calc voor de andere toegevoegd (niet alleen eerste).*/
+    /*  Met ertussen iets meer random blobs achtig:  */
+    /*  !! ChatGPT gevraagd om me te helpen met het meer random maken van de blob  */
+    border-radius:
+    calc(50% * var(--shape) + 3%)
+    calc(50% * var(--shape) + 21%)
+    calc(50% * var(--shape) + 19%) 
+    calc(50% * var(--shape) + 14%)  
+    /
+    calc(100% * var(--shape) - 7%)
+    calc(100% * var(--shape) + 11%)
+    calc(100% * var(--shape) - 18%)
+    calc(100% * var(--shape) + 11%);
+    
+    
+    /* --mix-ratio: calc(var(--sbindex) * 5%);
+    
+    border-color: color-mix(
+      in oklch, 
+      var(--color-one), 
+      var(--color-two) var(--mix-ratio)
+    ); */
+    
+    animation: --rotate-self calc(var(--speed) * 1s) infinite alternate ease-in-out;
+    animation-delay: calc(-.15s * var(--sbindex));
+    
+  }
+}
+
+
+/* Zodat de sibling geerfd wordt: */
+@property --sbindex {
+  syntax:"<integer>";
+  inherits:true;
+  initial-value: 1;
+}
+
+
+@keyframes --rotate-self {
+  0% {
+    transform: 
+      rotate(0turn);
+  }
+  100% {
+    transform: 
+      rotate(2turn);
+  }
+}
+
+
+
+
+
+/* MARK: BIG SCREEN
+/* -------- MEDIA QUERY --------  */
+@media screen and (min-width: 65em) {
+  main > section:nth-of-type(2) {
+    display: grid;
+    grid-template-areas: 
+    "modes    spirograph"
+    "sliders  spirograph";
+    grid-template-columns: minmax(20em,30em) 1fr;
+    width: 100%;
+    
+  }
+  
+  /* MARK: Animatie divs
+  /* -------- SECTION: ANIMATION SPIROGRAPH --------  */
+  section:nth-of-type(2) section:nth-of-type(1) {
+      grid-area: spirograph;
+      place-self: center;
+  }
+
+  /* MARK: MODES
+  /* -------- SECTION: MODES --------  */
+  section:nth-of-type(2) section:nth-of-type(2) {
+    grid-area: modes;
+    height: 30svh;
+    border-radius: 1.5rem;
+    border: .25px solid var(--color-border);
+
+    box-shadow: 10px 10px 10px 0 var(--color-bsdw-one),
+                -10px -10px 10px 0 var(--color-bsdw-two);
+    
+    margin: 1.5em;
+  }
+
+
+  /* MARK: SLIDERS
+  /* -------- SECTION: SLIDERS --------  */
+  section:nth-of-type(2) section:nth-of-type(3) {
+    grid-area: sliders;
+
+    height: 60svh;
+    border-radius: 1.5rem;
+    border: .25px solid var(--color-border);
+
+    box-shadow: 10px 10px 10px 0 var(--color-bsdw-one),
+                -10px -10px 10px 0 var(--color-bsdw-two);
+    
+    margin: 1.5em;
+
+    & label {
+      display: flex;
+      gap: .5em;
+      align-items: center;
+      font-size: clamp(1em,5vw,2em);
+    }
+  }
+}
